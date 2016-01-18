@@ -1,0 +1,4 @@
+#ifndef GUARD_STE_EXCEPTIONS
+#define GUARD_STE_EXCEPTIONS
+
+#endif
