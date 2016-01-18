@@ -1,0 +1,4 @@
+#ifndef GUARD_EXTENSIONS_H
+#define GUARD_EXTENSIONS_H
+
+#endif

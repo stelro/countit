@@ -1,0 +1,4 @@
+#ifndef GUARD_COMMENTSTRIP_H
+#define GUARD_COMMENTSTRIP_H
+
+#endif
