@@ -22,7 +22,7 @@ namespace ste {
         FileInfo();
         FileInfo(const FileInfo &copy_file);
         FileInfo(const size_t chars, const size_t lines, const size_t blank, const size_t s_comments, const size_t m_comments,
-                const size_t file, bool uni, bool empt, std::string ext);
+                const size_t file, const bool uni, const bool empt, const std::string &ext);
         //constructor if file is empty set all to 0 and stop scaning file
         FileInfo(const bool emp);
         void set_chars(const size_t chars) { chars_counter = chars; }
