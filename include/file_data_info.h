@@ -6,7 +6,7 @@
 namespace ste {
 
     /* this class , track information about every unique file */
-
+    //TODO: maybe additon operator overloading
     class FileInfo : public ExtensionHelper {
     private:
         size_t chars_counter;
@@ -21,6 +21,10 @@ namespace ste {
     public:
         FileInfo();
         FileInfo(const FileInfo &copy_file);
+        FileInfo(const size_t chars, const size_t lines, const size_t blank, const size_t s_comments, const size_t m_comments,
+                const size_t file, bool uni, bool empt, std::string ext);
+        //constructor if file is empty set all to 0 and stop scaning file
+        FileInfo(const bool emp);
         void set_chars(const size_t chars) { chars_counter = chars; }
         void set_lines(const size_t lines) { lines_counter = lines; }
         void set_file_number(const size_t file_no) { file_number = file_no; }
