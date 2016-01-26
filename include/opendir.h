@@ -5,6 +5,7 @@
 #include <vector>
 #include <dirent.h>
 #include <cstring>
+#include "error_handling.h"
 
 namespace stel {
     class DirTools {

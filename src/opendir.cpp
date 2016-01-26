@@ -28,4 +28,24 @@ namespace stel {
 
         return files_names;
     }
+
+    //------------------------------------------------------------
+    /* this method searching for every subdirectories with recursive
+     * way, and then push it into a vector */
+    //------------------------------------------------------------
+
+    void DirTools::parseDirectory(const std::string &reading_directory, const int level, std::vector<std::string> &tmp)
+    {
+        if ( DIR *dp = opendir(reading_directory.c_str())) {
+            tmp.push_back(reading_directory);
+
+            while (struct dirent *ep = readdir(dp))
+                if (ep->d_type == DT_DIR && ep->d_name[0] != '.')
+                    parseDirectory(reading_directory + "/" + ep->d_name, level + 1, tmp);
+            closedir(dp);
+        }
+        else {
+            std::cerr << "Couldn't open the directory " << reading_directory << std::endl;
+        }
+    }
 }
