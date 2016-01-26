@@ -15,7 +15,7 @@ example:
 ![alt tag](http://s29.postimg.org/3k5yghl3b/countit_example.png)
 
 Supported languages:
-
+```
 C
 C++
 Ruby
@@ -65,12 +65,13 @@ DOS Batch
 YAML
 Lua
 Mdula3
-
+```
 TODO:
-->Count single lines / multi lines comments
-->Count only unique files
-->Open single file
-->support for compressed (.zip/.rar) projects
+- Count single lines / multi lines comments
+- Count only unique files
+- Open single file
+- support for compressed (.zip/.rar) projects
+
 
 Main Author : Stelmach Ro
 
