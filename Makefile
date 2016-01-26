@@ -11,8 +11,8 @@ CFLAGS = -g -Wall -std=c++11
 default: $(TARGET)
 all:default
 
-OBJECTS = $(patsubst %.cpp, %.o, $(wildcard *.cpp))
-HEADERS = $(wildcard *.h)
+OBJECTS = $(patsubst %.cpp, %.o, $(wildcard src/*.cpp))
+HEADERS = $(wildcard include/*.h)
 
 %.o: %.cpp $(HEADERS)
 	$(CC) $(CFLAGS) -c $< -o $@
