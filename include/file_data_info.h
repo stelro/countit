@@ -34,7 +34,7 @@ namespace stel {
         void set_m_comments(const size_t m_comments) { multi_comments_counter = m_comments; }
         size_t get_chars() const { return chars_counter; }
         size_t get_lines() const { return lines_counter; }
-        size_t get_blnk_lines() const { return blank_counter; }
+        size_t get_blank_lines() const { return blank_counter; }
         size_t get_s_comments() const { return single_comments_counter; }
         size_t get_m_comments() const { return multi_comments_counter; }
         size_t get_file_number() const { return file_number; }
