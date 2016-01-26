@@ -45,7 +45,7 @@ namespace stel {
             closedir(dp);
         }
         else {
-            std::cerr << "Couldn't open the directory " << reading_directory << std::endl;
+            throw InitializerException("Couldn't Open file: " + reading_directory,"parseDirectory");
         }
     }
 }
