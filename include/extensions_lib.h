@@ -4,7 +4,7 @@
 #include <iostream>
 #include <map>
 
-namespace ste {
+namespace stel {
 
     class ExtensionHelper {
     private:
@@ -18,7 +18,7 @@ namespace ste {
         std::string extension_to_name(const char *file_extension);
         std::string find_extension(const std::string file_name);
     };
-    
+
 }
 
 #endif

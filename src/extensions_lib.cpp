@@ -1,6 +1,6 @@
 #include "../include/extensions_lib.h"
 
-namespace ste {
+namespace stel {
 
     std::string ExtensionHelper::find_extension(const std::string file_name)
     {

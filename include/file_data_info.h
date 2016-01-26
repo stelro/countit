@@ -3,7 +3,7 @@
 
 #include "extensions_lib.h"
 
-namespace ste {
+namespace stel {
 
     /* this class , track information about every unique file */
     //TODO: maybe additon operator overloading

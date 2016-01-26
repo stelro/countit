@@ -1,6 +1,6 @@
 #include "../include/file_data_info.h"
 
-namespace ste {
+namespace stel {
 
     FileInfo::FileInfo() :
         chars_counter(0),lines_counter(0),blank_counter(0),single_comments_counter(0),multi_comments_counter(0),file_number(0),unique(false),empty(false),file_extension("")
