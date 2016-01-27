@@ -17,7 +17,6 @@ int main(int argc, char **argv)
 {
     stel::DirTools file_tools;
     stel::ExtensionHelper ext_tools;
-    stel::CommentStrip comment_counter;
 
     //this instance will track all the information about the files
     stel::FileInfo *file_keeper;
@@ -49,8 +48,9 @@ int main(int argc, char **argv)
     size_t overall_comments{0};
     size_t scanned_files{0};
     bool flag = false;
-    bool unique = false;
-    bool empty = false;
+    // bool unique = false;
+    // bool empty = false;
+    bool comments_flag = false;
     string error_check("");
 
     //------------------------------------
@@ -123,14 +123,17 @@ int main(int argc, char **argv)
                 //Do not ignore whice spaces
                 file_f.unsetf(ios::skipws);
 
+                comments_flag = false;
+
                 while(getline(file_f, tmp_line)) {
                     lines_count++;
 
-                    comment_counter.GetLines(tmp_line,single_comments,multi_comments, error_check);
-                    cout << single_comments << endl;
+                    stel::CommentStrip::GetLines(tmp_line,single_comments,multi_comments, error_check,comments_flag);
 
                     if((tmp_line.empty()))
                         blanklines_count++;
+
+                    std::cout << single_comments << " + " << multi_comments << std::endl;
                 }
 
                 file_keeper->set_chars(chars_count);
@@ -147,9 +150,9 @@ int main(int argc, char **argv)
                     map_it->second.set_lines(lines_count);
                     map_it->second.set_file_number(same_files);
                     map_it->second.set_blanks(blanklines_count);
-                    file_keeper->set_s_comments(single_comments);
-                    file_keeper->set_m_comments(multi_comments);
-
+                    map_it->second.set_s_comments(single_comments);
+                    map_it->second.set_m_comments(multi_comments);
+                    
                     flag = false;
 
                     same_files = 0;
