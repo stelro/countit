@@ -9,6 +9,7 @@
 #include "../include/extensions_lib.h"
 #include "../include/file_data_info.h"
 #include "../include/opendir.h"
+#include "../include/commentstrip.h"
 
 using namespace std;
 
@@ -16,6 +17,7 @@ int main(int argc, char **argv)
 {
     stel::DirTools file_tools;
     stel::ExtensionHelper ext_tools;
+    stel::CommentStrip comment_counter;
 
     //this instance will track all the information about the files
     stel::FileInfo *file_keeper;
@@ -44,6 +46,7 @@ int main(int argc, char **argv)
     size_t blanklines_count{0};
     size_t single_comments{0};
     size_t multi_comments{0};
+    size_t overall_comments{0};
     size_t scanned_files{0};
     bool flag = false;
     bool unique = false;
@@ -107,6 +110,8 @@ int main(int argc, char **argv)
                     lines_count = map_it->second.get_lines();
                     blanklines_count = map_it->second.get_blank_lines();
                     same_files = map_it->second.get_file_number();
+                    single_comments = map_it->second.get_s_comments();
+                    multi_comments = map_it->second.get_m_comments();
                     same_files++;
                 }
                 else
@@ -121,15 +126,19 @@ int main(int argc, char **argv)
                 while(getline(file_f, tmp_line)) {
                     lines_count++;
 
+                    comment_counter.GetLines(tmp_line,single_comments,multi_comments, error_check);
+                    cout << single_comments << endl;
+
                     if((tmp_line.empty()))
                         blanklines_count++;
-
                 }
 
                 file_keeper->set_chars(chars_count);
                 file_keeper->set_lines(lines_count);
                 file_keeper->set_file_number(same_files);
                 file_keeper->set_blanks(blanklines_count);
+                file_keeper->set_s_comments(single_comments);
+                file_keeper->set_m_comments(multi_comments);
 
                 if(flag) {
                     //overite the arledy exsisting data in the object
@@ -138,6 +147,8 @@ int main(int argc, char **argv)
                     map_it->second.set_lines(lines_count);
                     map_it->second.set_file_number(same_files);
                     map_it->second.set_blanks(blanklines_count);
+                    file_keeper->set_s_comments(single_comments);
+                    file_keeper->set_m_comments(multi_comments);
 
                     flag = false;
 
@@ -160,6 +171,8 @@ int main(int argc, char **argv)
             chars_count = 0;
             lines_count = 0;
             blanklines_count = 0;
+            single_comments = 0;
+            multi_comments = 0;
 
         }
     }
@@ -188,7 +201,7 @@ int main(int argc, char **argv)
 
        cout << setw(25) << left << map_it->first;
        cout << setw(10) << left <<  map_it->second.get_file_number();
-       cout << setw(11) << left <<  single_comments;
+       cout << setw(11) << left <<  map_it->second.get_s_comments() + map_it->second.get_m_comments();
        cout << setw(13) << left <<  map_it->second.get_blank_lines();
        cout << setw(10) << left <<  map_it->second.get_lines() - map_it->second.get_blank_lines();
        cout << endl;
