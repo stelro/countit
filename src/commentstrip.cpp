@@ -4,7 +4,7 @@ namespace stel {
 
     void CommentStrip::GetLines(const std::string &line, size_t &single_comm, size_t &multi_comm, const std::string &language, bool &flag)
     {
-        if (language == "C" || language == "C++") {
+        if (language == "C" || language == "C++" || language == "C/C++ Header") {
 
             std::regex single_regex("(//.*)");
             std::regex multi_regex("/\\*.*?");

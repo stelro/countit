@@ -41,6 +41,9 @@ namespace stel {
         bool is_unique() const { return unique; }
         bool is_empty() const { return empty; }
         std::string get_file_extension() const { return file_extension; }
+        size_t get_pure_lines() const { return (lines_counter - (single_comments_counter +  multi_comments_counter + blank_counter
+        ));}
+        size_t get_overall_comments() const { return single_comments_counter+ multi_comments_counter; }
 
     };
 }

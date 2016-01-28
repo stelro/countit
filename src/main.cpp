@@ -45,7 +45,6 @@ int main(int argc, char **argv)
     size_t blanklines_count{0};
     size_t single_comments{0};
     size_t multi_comments{0};
-    size_t overall_comments{0};
     size_t scanned_files{0};
     bool flag = false;
     // bool unique = false;
@@ -132,8 +131,6 @@ int main(int argc, char **argv)
 
                     if((tmp_line.empty()))
                         blanklines_count++;
-
-                    std::cout << single_comments << " + " << multi_comments << std::endl;
                 }
 
                 file_keeper->set_chars(chars_count);
@@ -152,7 +149,7 @@ int main(int argc, char **argv)
                     map_it->second.set_blanks(blanklines_count);
                     map_it->second.set_s_comments(single_comments);
                     map_it->second.set_m_comments(multi_comments);
-                    
+
                     flag = false;
 
                     same_files = 0;
@@ -200,16 +197,18 @@ int main(int argc, char **argv)
    cout << setfill('-') << setw(80) << "-" << endl;
    cout << setfill(' ');
 
-   for(map_it = infomap.begin(); map_it!= infomap.end(); map_it++) {
+   for(auto map_it : infomap ) {
 
-       cout << setw(25) << left << map_it->first;
-       cout << setw(10) << left <<  map_it->second.get_file_number();
-       cout << setw(11) << left <<  map_it->second.get_s_comments() + map_it->second.get_m_comments();
-       cout << setw(13) << left <<  map_it->second.get_blank_lines();
-       cout << setw(10) << left <<  map_it->second.get_lines() - map_it->second.get_blank_lines();
+       cout << setw(25) << left << map_it.first;
+       cout << setw(10) << left <<  map_it.second.get_file_number();
+       cout << setw(11) << left <<  map_it.second.get_overall_comments();
+       cout << setw(13) << left <<  map_it.second.get_blank_lines();
+       cout << setw(10) << left <<  map_it.second.get_pure_lines();
        cout << endl;
 
-       overall_lines += map_it->second.get_lines();
+       overall_lines += map_it.second.get_pure_lines();
+
+
    }
 
    cout << setfill('-') << setw(80) << "-" << endl;
